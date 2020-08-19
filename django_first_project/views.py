@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.views.generic.base import TemplateView
+from django.shortcuts import redirect
 
 
-def index(request):
-    return render(request, 'index.html', context={
-        'who': 'World',
-    })
+class IndexView(TemplateView):
+    template_name = 'index.html'
+
+    def get(self, *args, **kwargs):
+        return redirect('calc', a=40, b=2)
